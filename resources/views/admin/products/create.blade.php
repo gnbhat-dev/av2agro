@@ -210,5 +210,3 @@ $editing = isset($product);
     </div>
 
 </div>
-
-</form>
