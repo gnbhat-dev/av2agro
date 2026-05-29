@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\ProductRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -44,30 +45,9 @@ class ProductController extends Controller
     |--------------------------------------------------------------------------
     */
 
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        $validated = $request->validate([
-
-            /*
-            |--------------------------------------------------------------------------
-            | Product Fields
-            |--------------------------------------------------------------------------
-            */
-
-            'name' => 'required|string|max:100',
-
-            'short_description' => 'nullable|string|max:255',
-
-            'description' => 'nullable|string',
-
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-
-            'is_active' => 'nullable|boolean',
-
-            'sort_order' => 'nullable|integer|min:0',
-
-        ]);
-
+        $validated = $request->validated();
         /*
         |--------------------------------------------------------------------------
         | Upload Product Image
@@ -147,28 +127,9 @@ class ProductController extends Controller
     |--------------------------------------------------------------------------
     */
 
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
-        $validated = $request->validate([
-
-            /*
-            |--------------------------------------------------------------------------
-            | Product Fields
-            |--------------------------------------------------------------------------
-            */
-
-            'name' => 'required|string|max:100',
-
-            'short_description' => 'nullable|string|max:255',
-
-            'description' => 'nullable|string',
-
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-
-            'is_active' => 'nullable|boolean',
-
-            'sort_order' => 'nullable|integer|min:0',
-        ]);
+        $validated = $request->validated();
 
         /*
         |--------------------------------------------------------------------------
