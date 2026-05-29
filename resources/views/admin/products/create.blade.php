@@ -8,7 +8,7 @@
 @section('admin-content')
 
 @php
-    $editing = isset($product);
+$editing = isset($product);
 @endphp
 
 <div class="d-flex justify-content-between align-items-center mb-4">
@@ -24,7 +24,7 @@
     </div>
 
     <a href="{{ route('admin.products.index') }}"
-       class="btn btn-outline-secondary">
+        class="btn btn-outline-secondary">
         Back
     </a>
 
@@ -32,24 +32,20 @@
 
 @if(session('success'))
 
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
 
 @endif
 
 <div class="bg-white rounded shadow-sm p-4">
 
-    <form action="{{ $editing
-            ? route('admin.products.update', $product)
-            : route('admin.products.store') }}"
-          method="POST"
-          enctype="multipart/form-data">
+    <form action="{{ $editing ? route('admin.products.update', $product) : route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
 
         @csrf
 
         @if($editing)
-            @method('PUT')
+        @method('PUT')
         @endif
 
         {{-- ======================================================= --}}
@@ -68,16 +64,12 @@
                     Product Name *
                 </label>
 
-                <input type="text"
-                       name="name"
-                       class="form-control"
-                       value="{{ old('name', $product->name ?? '') }}"
-                       required>
+                <input type="text" name="name" class="form-control" value="{{ old('name', $product->name ?? '') }}" required>
 
                 @error('name')
-                    <div class="text-danger small mt-1">
-                        {{ $message }}
-                    </div>
+                <div class="text-danger small mt-1">
+                    {{ $message }}
+                </div>
                 @enderror
 
             </div>
@@ -88,10 +80,7 @@
                     Short Description
                 </label>
 
-                <input type="text"
-                       name="short_description"
-                       class="form-control"
-                       value="{{ old('short_description', $product->short_description ?? '') }}">
+                <input type="text" name="short_description" class="form-control" value="{{ old('short_description', $product->short_description ?? '') }}">
 
             </div>
 
@@ -101,9 +90,7 @@
                     Full Description
                 </label>
 
-                <textarea name="description"
-                          class="form-control"
-                          rows="5">{{ old('description', $product->description ?? '') }}</textarea>
+                <textarea name="description" class="form-control" rows="5">{{ old('description', $product->description ?? '') }}</textarea>
 
             </div>
 
@@ -115,25 +102,20 @@
 
                 @if($editing && $product->image)
 
-                    <div class="mb-3">
+                <div class="mb-3">
 
-                        <img src="{{ $product->image_url }}"
-                             width="140"
-                             class="rounded border shadow-sm">
+                    <img src="{{ $product->image_url }}" width="140" class="rounded border shadow-sm">
 
-                    </div>
+                </div>
 
                 @endif
 
-                <input type="file"
-                       name="image"
-                       class="form-control"
-                       accept="image/*">
+                <input type="file" name="image" class="form-control" accept="image/*">
 
                 @error('image')
-                    <div class="text-danger small mt-1">
-                        {{ $message }}
-                    </div>
+                <div class="text-danger small mt-1">
+                    {{ $message }}
+                </div>
                 @enderror
 
             </div>
@@ -148,11 +130,7 @@
                             Sort Order
                         </label>
 
-                        <input type="number"
-                               name="sort_order"
-                               class="form-control"
-                               min="0"
-                               value="{{ old('sort_order', $product->sort_order ?? 0) }}">
+                        <input type="number" name="sort_order" class="form-control" min="0" value="{{ old('sort_order', $product->sort_order ?? 0) }}">
 
                     </div>
 
@@ -167,7 +145,7 @@
                         </label>
 
                         <select name="is_active"
-                                class="form-select">
+                            class="form-select">
 
                             <option value="1"
                                 {{ old('is_active', $product->is_active ?? 1) ? 'selected' : '' }}>
@@ -187,9 +165,11 @@
 
             </div>
 
-        </div>  
+        </div>
 
+    </form>
 
+</div>
 {{-- ======================================================= --}}
 {{-- ACTION BUTTONS --}}
 {{-- ======================================================= --}}
@@ -200,12 +180,12 @@
 
         @if($editing && $product->certificate_file)
 
-            <a href="{{ route('admin.products.preview-certificate', $product) }}"
-                target="_blank"
-                class="btn btn-success">
-                View Certificate
+        <a href="{{ route('admin.products.preview-certificate', $product) }}"
+            target="_blank"
+            class="btn btn-success">
+            View Certificate
 
-            </a>
+        </a>
 
         @endif
 
@@ -214,14 +194,14 @@
     <div class="d-flex gap-2">
 
         <a href="{{ route('admin.products.index') }}"
-           class="btn btn-secondary">
+            class="btn btn-secondary">
 
             Cancel
 
         </a>
 
         <button type="submit"
-                class="btn btn-primary">
+            class="btn btn-primary">
 
             {{ $editing ? 'Update Product' : 'Create Product' }}
 
@@ -232,4 +212,3 @@
 </div>
 
 </form>
-

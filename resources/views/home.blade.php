@@ -7,84 +7,84 @@
 @section('content')
 
 <style>
-  .hero-section .carousel-item img{
+  .hero-section .carousel-item img {
     height: 100vh;
     object-fit: cover;
-}
+  }
 
-.hero-section{
+  .hero-section {
     position: relative;
-}
+  }
 
-.product-slider-section{
+  .product-slider-section {
     position: relative;
     margin-top: 0;
     z-index: 5;
-}
+  }
 </style>
 
 <section class="hero-section">
 
-    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+  <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
 
-        <div class="carousel-inner">
+    <div class="carousel-inner">
 
-        @foreach($banners as $key => $banner)
+      @foreach($banners as $key => $banner)
 
-          <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+      <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
 
-              <img src="{{ asset('storage/' . $banner->image) }}"
-                  class="d-block w-100"
-                  alt="{{ $banner->title }}">
+        <img src="{{ asset('storage/' . $banner->image) }}"
+          class="d-block w-100"
+          alt="{{ $banner->title }}">
 
-              <div class="carousel-caption text-start">
+        <div class="carousel-caption text-start">
 
-                <h1>{{ $banner->title }}</h1>
+          <h1>{{ $banner->title }}</h1>
 
-                <p>{{ $banner->description }}</p>
+          <p>{{ $banner->description }}</p>
 
-                @if($banner->button_text)
+          @if($banner->button_text)
 
-                    <a href="{{ $banner->button_link }}"
-                      class="btn btn-primary banner_btn">
+          <a href="{{ $banner->button_link }}"
+            class="btn btn-primary banner_btn">
 
-                        {{ $banner->button_text }}
+            {{ $banner->button_text }}
 
-                    </a>
+          </a>
 
-                @endif
+          @endif
 
-              </div>
+        </div>
 
-          </div>
-
-        @endforeach
       </div>
 
-        {{-- PREVIOUS BUTTON --}}
-        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-
-          <span class="visually-hidden">
-            Previous
-          </span>
-
-        </button>
-
-
-        {{-- NEXT BUTTON --}}
-        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-
-          <span class="visually-hidden">
-            Next
-          </span>
-
-        </button>
-
+      @endforeach
     </div>
+
+    {{-- PREVIOUS BUTTON --}}
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+
+      <span class="visually-hidden">
+        Previous
+      </span>
+
+    </button>
+
+
+    {{-- NEXT BUTTON --}}
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+
+      <span class="visually-hidden">
+        Next
+      </span>
+
+    </button>
+
+  </div>
 
 </section>
 
@@ -98,40 +98,40 @@
       <div class="col-lg-10 col-md-8">
         <div class="owl-carousel product-carousel">
           @forelse ($products as $product)
-            <div class="product-card">
-              <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="product-card-img">
-              <div class="pdt_cnt">
-                <div class="pdt_cnt_img">
-                  <img src="{{ asset('images/fssi.png') }}" alt="fssai">
-                  <img src="{{ asset('images/qr.png') }}" alt="qr">
-                </div>
-                <h6>{{ $product->name }}</h6>
-                <p>{{ $product->short_description }}</p>
+          <div class="product-card">
+            <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="product-card-img">
+            <div class="pdt_cnt">
+              <div class="pdt_cnt_img">
+                <img src="{{ asset('images/fssi.png') }}" alt="fssai">
+                <img src="{{ asset('images/qr.png') }}" alt="qr">
               </div>
+              <h6>{{ $product->name }}</h6>
+              <p>{{ $product->short_description }}</p>
             </div>
+          </div>
           @empty
-            @php
-              $fallbackProducts = [
-                ['img' => 'p1.png', 'name' => 'Rice', 'desc' => 'Premium quality grains'],
-                ['img' => 'p2.png', 'name' => 'Heirloom Rices', 'desc' => 'Ancient & nutritious'],
-                ['img' => 'p3.png', 'name' => 'Millets', 'desc' => 'Healthy everyday grains'],
-                ['img' => 'p1.png', 'name' => 'Flours', 'desc' => 'Stone-ground purity'],
-                ['img' => 'p2.png', 'name' => 'Sweeteners', 'desc' => 'Natural alternatives'],
-              ];
-            @endphp
-            @foreach ($fallbackProducts as $item)
-              <div class="product-card">
-                <img src="{{ asset('images/'.$item['img']) }}" alt="{{ $item['name'] }}" class="product-card-img">
-                <div class="pdt_cnt">
-                  <div class="pdt_cnt_img">
-                    <img src="{{ asset('images/fssi.png') }}" alt="fssai">
-                    <img src="{{ asset('images/qr.png') }}" alt="qr">
-                  </div>
-                  <h6>{{ $item['name'] }}</h6>
-                  <p>{{ $item['desc'] }}</p>
-                </div>
+          @php
+          $fallbackProducts = [
+          ['img' => 'p1.png', 'name' => 'Rice', 'desc' => 'Premium quality grains'],
+          ['img' => 'p2.png', 'name' => 'Heirloom Rices', 'desc' => 'Ancient & nutritious'],
+          ['img' => 'p3.png', 'name' => 'Millets', 'desc' => 'Healthy everyday grains'],
+          ['img' => 'p1.png', 'name' => 'Flours', 'desc' => 'Stone-ground purity'],
+          ['img' => 'p2.png', 'name' => 'Sweeteners', 'desc' => 'Natural alternatives'],
+          ];
+          @endphp
+          @foreach ($fallbackProducts as $item)
+          <div class="product-card">
+            <img src="{{ asset('images/'.$item['img']) }}" alt="{{ $item['name'] }}" class="product-card-img">
+            <div class="pdt_cnt">
+              <div class="pdt_cnt_img">
+                <img src="{{ asset('images/fssi.png') }}" alt="fssai">
+                <img src="{{ asset('images/qr.png') }}" alt="qr">
               </div>
-            @endforeach
+              <h6>{{ $item['name'] }}</h6>
+              <p>{{ $item['desc'] }}</p>
+            </div>
+          </div>
+          @endforeach
           @endforelse
         </div>
       </div>
@@ -258,32 +258,32 @@
       <h5 class="text-center">Testimonials</h5>
       <div class="owl-carousel testimonial-carousel">
         @forelse ($testimonials as $testimonial)
-          <div class="testimonial-item text-center">
-            <p class="testimonial-text">{{ $testimonial->message }}</p>
-            <img src="{{ $testimonial->photo_url }}" class="testimonial-img" alt="{{ $testimonial->name }}">
-            <h6 class="mt-3 mb-0">{{ $testimonial->name }}</h6>
-            <small>{{ $testimonial->location }}</small>
-          </div>
+        <div class="testimonial-item text-center">
+          <p class="testimonial-text">{{ $testimonial->message }}</p>
+          <img src="{{ $testimonial->photo_url }}" class="testimonial-img" alt="{{ $testimonial->name }}">
+          <h6 class="mt-3 mb-0">{{ $testimonial->name }}</h6>
+          <small>{{ $testimonial->location }}</small>
+        </div>
         @empty
-          <div class="testimonial-item text-center">
-            <p class="testimonial-text">
-              Heritage sugar and rice have become a regular part of our kitchen.
-              The quality is consistent, clean, and you can really feel the
-              difference in taste &amp; purity.
-            </p>
-            <img src="{{ asset('images/testi.png') }}" class="testimonial-img" alt="Client">
-            <h6 class="mt-3 mb-0">Gokul Das</h6>
-            <small>Calicut</small>
-          </div>
-          <div class="testimonial-item text-center">
-            <p class="testimonial-text">
-              Pure ingredients and authentic taste. We trust these products for
-              our family’s daily cooking.
-            </p>
-            <img src="{{ asset('images/testi.png') }}" class="testimonial-img" alt="Client">
-            <h6 class="mt-3 mb-0">Anitha S</h6>
-            <small>Kochi</small>
-          </div>
+        <div class="testimonial-item text-center">
+          <p class="testimonial-text">
+            Heritage sugar and rice have become a regular part of our kitchen.
+            The quality is consistent, clean, and you can really feel the
+            difference in taste &amp; purity.
+          </p>
+          <img src="{{ asset('images/testi.png') }}" class="testimonial-img" alt="Client">
+          <h6 class="mt-3 mb-0">Gokul Das</h6>
+          <small>Calicut</small>
+        </div>
+        <div class="testimonial-item text-center">
+          <p class="testimonial-text">
+            Pure ingredients and authentic taste. We trust these products for
+            our family’s daily cooking.
+          </p>
+          <img src="{{ asset('images/testi.png') }}" class="testimonial-img" alt="Client">
+          <h6 class="mt-3 mb-0">Anitha S</h6>
+          <small>Kochi</small>
+        </div>
         @endforelse
       </div>
     </div>
@@ -323,42 +323,56 @@
 
 @push('scripts')
 <script>
-$(document).ready(function(){
-  $(".product-carousel").owlCarousel({
-    loop: true,
-    margin: 15,
-    nav: true,
-    dots: false,
-    autoplay: true,
-    autoplayTimeout: 3000,
-    responsive:{
-      0:{ items: 1 },
-      576:{ items: 2 },
-      768:{ items: 3 },
-      992:{ items: 3 }
-    }
+  $(document).ready(function() {
+    $(".product-carousel").owlCarousel({
+      loop: true,
+      margin: 15,
+      nav: true,
+      dots: false,
+      autoplay: true,
+      autoplayTimeout: 3000,
+      responsive: {
+        0: {
+          items: 1
+        },
+        576: {
+          items: 2
+        },
+        768: {
+          items: 3
+        },
+        992: {
+          items: 3
+        }
+      }
+    });
+    $(".offer-carousel").owlCarousel({
+      loop: true,
+      margin: 15,
+      nav: true,
+      dots: false,
+      autoplay: true,
+      autoplayTimeout: 3500,
+      responsive: {
+        0: {
+          items: 1
+        },
+        576: {
+          items: 2
+        },
+        992: {
+          items: 4
+        }
+      }
+    });
+    $(".testimonial-carousel").owlCarousel({
+      items: 1,
+      loop: true,
+      autoplay: true,
+      autoplayTimeout: 5000,
+      dots: true,
+      nav: true
+    });
   });
-  $(".offer-carousel").owlCarousel({
-    loop: true,
-    margin: 15,
-    nav: true,
-    dots: false,
-    autoplay: true,
-    autoplayTimeout: 3500,
-    responsive:{
-      0:{ items: 1 },
-      576:{ items: 2 },
-      992:{ items: 4 }
-    }
-  });
-  $(".testimonial-carousel").owlCarousel({
-    items: 1,
-    loop: true,
-    autoplay: true,
-    autoplayTimeout: 5000,
-    dots: true,
-    nav: true
-  });
-});
 </script>
 @endpush
