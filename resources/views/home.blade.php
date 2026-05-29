@@ -23,23 +23,21 @@
 }
 </style>
 
-      <section class="hero-section">
+<section class="hero-section">
 
-    <div id="heroCarousel"
-         class="carousel slide"
-         data-bs-ride="carousel">
+    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
 
         <div class="carousel-inner">
 
-    @foreach($banners as $key => $banner)
+        @foreach($banners as $key => $banner)
 
-        <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+          <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
 
-            <img src="{{ asset('storage/' . $banner->image) }}"
-                 class="d-block w-100"
-                 alt="{{ $banner->title }}">
+              <img src="{{ asset('storage/' . $banner->image) }}"
+                  class="d-block w-100"
+                  alt="{{ $banner->title }}">
 
-            <div class="carousel-caption text-start">
+              <div class="carousel-caption text-start">
 
                 <h1>{{ $banner->title }}</h1>
 
@@ -48,7 +46,7 @@
                 @if($banner->button_text)
 
                     <a href="{{ $banner->button_link }}"
-                       class="btn btn-primary banner_btn">
+                      class="btn btn-primary banner_btn">
 
                         {{ $banner->button_text }}
 
@@ -56,107 +54,33 @@
 
                 @endif
 
-            </div>
+              </div>
 
-        </div>
+          </div>
 
-    @endforeach
-
-</div>
-
-
-            {{-- STATIC BANNER 1 --}}
-            <div class="carousel-item {{ $banners->count() == 0 ? 'active' : '' }}">
-
-                <img src="{{ asset('images/banner1.png') }}"
-                     class="d-block w-100"
-                     alt="Banner 1">
-
-                <div class="carousel-caption text-start">
-
-                    <h1>
-                        Pure Sugar & Premium Rice,
-                        From Our Fields to Your Home
-                    </h1>
-
-                    <p>
-                        We deliver high-quality sugar and rice processed
-                        with care, hygiene, and tradition
-                    </p>
-
-                    <a href="{{ route('products') }}"
-                       class="btn btn-primary banner_btn">
-
-                        View Products
-
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            {{-- STATIC BANNER 2 --}}
-            <div class="carousel-item">
-
-                <img src="{{ asset('images/banner2.png') }}"
-                     class="d-block w-100"
-                     alt="Banner 2">
-
-                <div class="carousel-caption text-start">
-
-                    <h1>
-                        Pure Sugar & Premium Rice,
-                        From Our Fields to Your Home
-                    </h1>
-
-                    <p>
-                        We deliver high-quality sugar and rice processed
-                        with care, hygiene, and tradition
-                    </p>
-
-                    <a href="{{ route('products') }}"
-                       class="btn btn-primary banner_btn">
-
-                        View Products
-
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
+        @endforeach
+      </div>
 
         {{-- PREVIOUS BUTTON --}}
-        <button class="carousel-control-prev"
-                type="button"
-                data-bs-target="#heroCarousel"
-                data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
 
-            <span class="carousel-control-prev-icon"
-                  aria-hidden="true"></span>
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 
-            <span class="visually-hidden">
-                Previous
-            </span>
+          <span class="visually-hidden">
+            Previous
+          </span>
 
         </button>
 
 
         {{-- NEXT BUTTON --}}
-        <button class="carousel-control-next"
-                type="button"
-                data-bs-target="#heroCarousel"
-                data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
 
-            <span class="carousel-control-next-icon"
-                  aria-hidden="true"></span>
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
 
-            <span class="visually-hidden">
-                Next
-            </span>
+          <span class="visually-hidden">
+            Next
+          </span>
 
         </button>
 
