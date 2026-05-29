@@ -1,7 +1,5 @@
 @extends('admin.layout')
 
-@extends('admin.banners.edit')
-
 @section('admin-content')
 
 <div class="container py-4">
@@ -115,7 +113,6 @@
                                class="form-control"
                                accept="image/*"
                                required>
-
                     </div>
 
                 </div>
@@ -188,29 +185,25 @@
                             <hr>
 
                             {{-- DELETE --}}
-                            <form action="{{ route(
-                                    'admin.banners.destroy',
-                                    $banner->id
-                                  ) }}"
-                                  method="POST">
+                            <form action="{{ route('admin.banners.destroy', $banner->id) }}"
+                                    method="POST">
 
-                                @csrf
-                                @method('DELETE')
+                                    @csrf
+                                    @method('DELETE')
 
                                 <button class="btn btn-danger btn-sm"
-                                        onclick="return confirm(
-                                            'Delete this banner?'
-                                        )">
+                                    onclick="return confirm('Delete this banner?')">
 
                                     Delete
 
                                 </button>
 
-                                <button>
-                                    <a href="{{ route('admin.banners.edit', $banner->id) }}" class="btn btn-warning btn-sm">
+                                <a href="{{ route('admin.banners.edit', $banner->id) }}"
+                                    class="btn btn-warning btn-sm">
+
                                     Edit
-                                    </a>
-                                </button>
+
+                                </a>
 
                             </form>
 

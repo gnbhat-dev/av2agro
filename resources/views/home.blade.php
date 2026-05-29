@@ -6,63 +6,74 @@
 
 @section('content')
 
+<style>
+  .hero-section .carousel-item img{
+    height: 100vh;
+    object-fit: cover;
+}
+
+.hero-section{
+    position: relative;
+}
+
+.product-slider-section{
+    position: relative;
+    margin-top: 0;
+    z-index: 5;
+}
+</style>
 
       <section class="hero-section">
-    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+
+    <div id="heroCarousel"
+         class="carousel slide"
+         data-bs-ride="carousel">
 
         <div class="carousel-inner">
 
-            {{-- STATIC RICE BANNER --}}
-            <div class="carousel-item active">
-                <img src="{{ asset('images/rice.png') }}"
-                     class="d-block w-100"
-                     alt="Rice Banner">
+    @foreach($banners as $key => $banner)
 
-                <div class="carousel-caption text-start">
-                    <h1>
-                        Pure Sugar & Premium Rice,
-                        From Our Fields to Your Home
-                    </h1>
+        <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
 
-                    <p>
-                        We deliver high-quality sugar and rice processed
-                        with care, hygiene, and tradition
-                    </p>
+            <img src="{{ asset('storage/' . $banner->image) }}"
+                 class="d-block w-100"
+                 alt="{{ $banner->title }}">
 
-                    <a href="{{ route('products') }}"
+            <div class="carousel-caption text-start">
+
+                <h1>{{ $banner->title }}</h1>
+
+                <p>{{ $banner->description }}</p>
+
+                @if($banner->button_text)
+
+                    <a href="{{ $banner->button_link }}"
                        class="btn btn-primary banner_btn">
-                        View Products
+
+                        {{ $banner->button_text }}
+
                     </a>
-                </div>
+
+                @endif
+
             </div>
 
-            {{-- ADMIN BANNERS --}}
-            @foreach($banners as $banner)
-                <div class="carousel-item">
-                    <img src="{{ asset('storage/' . $banner->image) }}"
-                         class="d-block w-100"
-                         alt="{{ $banner->title }}">
+        </div>
 
-                    <div class="carousel-caption text-start">
-                        <h1>{{ $banner->title }}</h1>
+    @endforeach
 
-                        <p>{{ $banner->description }}</p>
+</div>
 
-                        <a href="{{ route('products') }}"
-                           class="btn btn-primary banner_btn">
-                            View Products
-                        </a>
-                    </div>
-                </div>
-            @endforeach
 
-            {{-- OLD BANNER 1 --}}
-            <div class="carousel-item">
+            {{-- STATIC BANNER 1 --}}
+            <div class="carousel-item {{ $banners->count() == 0 ? 'active' : '' }}">
+
                 <img src="{{ asset('images/banner1.png') }}"
                      class="d-block w-100"
                      alt="Banner 1">
 
                 <div class="carousel-caption text-start">
+
                     <h1>
                         Pure Sugar & Premium Rice,
                         From Our Fields to Your Home
@@ -75,18 +86,25 @@
 
                     <a href="{{ route('products') }}"
                        class="btn btn-primary banner_btn">
+
                         View Products
+
                     </a>
+
                 </div>
+
             </div>
 
-            {{-- OLD BANNER 2 --}}
+
+            {{-- STATIC BANNER 2 --}}
             <div class="carousel-item">
+
                 <img src="{{ asset('images/banner2.png') }}"
                      class="d-block w-100"
                      alt="Banner 2">
 
                 <div class="carousel-caption text-start">
+
                     <h1>
                         Pure Sugar & Premium Rice,
                         From Our Fields to Your Home
@@ -99,12 +117,17 @@
 
                     <a href="{{ route('products') }}"
                        class="btn btn-primary banner_btn">
+
                         View Products
+
                     </a>
+
                 </div>
+
             </div>
 
         </div>
+
 
         {{-- PREVIOUS BUTTON --}}
         <button class="carousel-control-prev"
@@ -118,17 +141,27 @@
             <span class="visually-hidden">
                 Previous
             </span>
+
         </button>
 
+
         {{-- NEXT BUTTON --}}
-        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <button class="carousel-control-next"
+                type="button"
+                data-bs-target="#heroCarousel"
+                data-bs-slide="next">
+
+            <span class="carousel-control-next-icon"
+                  aria-hidden="true"></span>
+
             <span class="visually-hidden">
                 Next
             </span>
+
         </button>
 
     </div>
+
 </section>
 
 <section class="product-slider-section">
